@@ -5,15 +5,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.UUID;
-
 @AllArgsConstructor
 @Builder
 @Getter
 @ToString
 public class Order {
 
-    private UUID id;
+    private String id;
     private Product product;
     private Client client;
     private String clientComment;

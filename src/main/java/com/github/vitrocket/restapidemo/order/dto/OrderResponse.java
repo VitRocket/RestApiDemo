@@ -2,8 +2,6 @@ package com.github.vitrocket.restapidemo.order.dto;
 
 import lombok.*;
 
-import java.util.UUID;
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Builder
@@ -11,7 +9,7 @@ import java.util.UUID;
 @ToString
 public class OrderResponse {
 
-    private UUID id;
+    private String id;
     private ProductResponse product;
     private ClientResponse client;
     private String clientComment;

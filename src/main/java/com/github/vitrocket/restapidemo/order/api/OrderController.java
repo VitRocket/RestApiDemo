@@ -2,6 +2,7 @@ package com.github.vitrocket.restapidemo.order.api;
 
 import com.github.vitrocket.restapidemo.order.dto.OrderRequest;
 import com.github.vitrocket.restapidemo.order.dto.OrderResponse;
+import com.github.vitrocket.restapidemo.order.dto.OrderUpdatePatch;
 import com.github.vitrocket.restapidemo.order.inport.OrderCreator;
 import com.github.vitrocket.restapidemo.order.inport.OrderGetter;
 import com.github.vitrocket.restapidemo.order.inport.OrderUpdater;
@@ -34,7 +35,7 @@ public class OrderController {
 
     @PostMapping
     ResponseEntity<Object> createOrder(@RequestBody OrderRequest newOrder) {
-        String id = orderCreator.createOrder(newOrder).toString();
+        String id = orderCreator.createOrder(newOrder);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -43,4 +44,13 @@ public class OrderController {
 
         return ResponseEntity.created(location).build();
     }
+
+    @PatchMapping(value = "/{id}")
+    ResponseEntity<Object> updateOrder(@PathVariable("id") String id, @RequestBody OrderUpdatePatch update) {
+
+        orderUpdater.updateOrder(id, update);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
