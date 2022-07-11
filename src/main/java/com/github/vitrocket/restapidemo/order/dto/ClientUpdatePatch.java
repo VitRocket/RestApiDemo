@@ -15,14 +15,6 @@ public class ClientUpdatePatch {
     private Optional<String> name;
     private Optional<String> email;
 
-    public boolean isPresentName() {
-        return name.isPresent();
-    }
-
-    public boolean isPresentEmail() {
-        return email.isPresent();
-    }
-
     @Nullable
     public String getNameData() {
         return name.orElse(null);

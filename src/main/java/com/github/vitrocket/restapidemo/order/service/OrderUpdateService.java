@@ -8,6 +8,7 @@ import com.github.vitrocket.restapidemo.order.model.Order;
 import com.github.vitrocket.restapidemo.order.model.Product;
 import com.github.vitrocket.restapidemo.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -50,17 +51,20 @@ class OrderUpdateService implements OrderUpdater {
         return builder.build();
     }
 
-    private Product getProduct(Long source) {
+    @Nullable
+    private Product getProduct(@Nullable Long source) {
         if (source == null) {
             return null;
         } else {
             return Product.builder()
                     .id(source)
+                    .name("Product Name " + source)
                     .build();
         }
     }
 
-    private Client getClient(Client old, ClientUpdatePatch source) {
+    @Nullable
+    private Client getClient(Client old, @Nullable ClientUpdatePatch source) {
         if (source == null) {
             return null;
         } else {
